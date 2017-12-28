@@ -1,19 +1,19 @@
 <div class="container top-buffer">
-    <form>
+    <form name="form" ng-submit="" role="form">
         <div class="imgcontainer">
-            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+            <h1>Login here!</h1>
         </div>
+        
         <div class="container">
             <label><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
-            <button type="submit">Login</button>
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading">Login</button>
             <input type="checkbox" checked="checked"> Remember me
         </div>
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
+           <a href="../#register" class="btn btn-link">Register</a>
         </div>
     </form>
 </div>

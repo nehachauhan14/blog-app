@@ -1,5 +1,6 @@
 	angular.module('app')
 	    .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+	          $locationProvider.html5Mode(true);
 	        $urlRouterProvider.otherwise('/');
 	        $stateProvider
 	            .state('app', {
@@ -9,7 +10,8 @@
 	                        templateUrl: '../views/nav.html'
 	                    },
 	                    'content': {
-	                        templateUrl: '../views/feed.html'	                        
+	                        templateUrl: '../views/feed.html',
+	                        controller: 'feedCtrl'	                        
 	                    }
 	                }
 	            })
@@ -36,6 +38,7 @@
 	                views: {
 	                    'content@': {
 	                        templateUrl: '../views/myblogs.html',
+	                        controller : 'myblogsCtrl'
 	                    }
 	                }
 

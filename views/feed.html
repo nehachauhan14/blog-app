@@ -1,13 +1,13 @@
 <div class="container top-buffer">
     <div class="row">
         <div class="col-xs-12">
-            <div class="page-header"><h1>All Blogs</h1></div>
-            <h1>Hello world blog</h1>
-            <h1>Hello world blog</h1>
-            <h1>Hello world blog</h1>
-            <h1>Hello world blog</h1>
-            <h1>Hello world blog</h1>
-            <h1>Hello world blog</h1>
+            <div class="page-header"><h1>All Blogs</h1>
+            </div>
+                <div class="container-fluid" ng-repeat="blog in blogs track by $index" >
+                    <h2 class= "page-header">{{blog.title}}</h2>
+                    <div>{{blog.blog_Content}}
+                    </div>
+                </div>
         </div>
     </div>
 </div>
