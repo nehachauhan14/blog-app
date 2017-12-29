@@ -1,7 +1,7 @@
 
 
 
-angular.module('app').factory('authService', ['$http', '$q', '$localStorageService', function ($http, $q, $localStorageService) {
+angular.module('app').factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
 
     var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
     var authServiceFactory = {};
