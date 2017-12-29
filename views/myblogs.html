@@ -5,7 +5,7 @@
                 <div class="container-fluid" ng-repeat="blog in blogs track by $index" >
                     <h2 class= "page-header">{{blog.title}}</h2>
                     <blockquote> {{blog.blog_Content}}</blockquote>
-                    <button type="button" class="btn btn-info btn-lg" href="/#edit">Edit</button>
+                    <button type="button" id = {{blog.bid}} class="btn btn-info btn-lg" href="/#edit">Edit</button>
  <!--                    <a href="/#edit">Register</a> -->
                     <button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#deleteModal"> Delete </button>
                 </div>

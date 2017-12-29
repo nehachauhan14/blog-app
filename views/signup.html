@@ -1,0 +1,32 @@
+<div class="container top-buffer">
+    <form>
+        <div class="imgcontainer">
+            <h1> Register Blogger </h1>
+        </div>
+        <div class="container">
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" data-ng-model="registration.userName" required>
+            <label><b>Email Address</b></label>
+            <input type="text" placeholder="Enter Email Address" name="email" data-ng-model="registration.email" required>
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" data-ng-model="registration.password" required>
+            <label><b>Confirm Password</b></label>
+            <input type="password" placeholder="Re-enter Password" name="psw" data-ng-model="registration.confirmPassword" required>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- <form class="form-login" role="form">
+    <h2 class="form-login-heading">Sign up</h2>
+    <input type="text" class="form-control" placeholder="Username" data-ng-model="registration.userName" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>
+    <input type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>
+    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()">Submit</button>
+    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+        {{message}}
+    </div>
+</form> -->

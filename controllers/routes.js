@@ -1,5 +1,4 @@
-	angular.module('app')
-	    .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+	app.config(function($stateProvider, $urlRouterProvider, $locationProvider ) {
 	          $locationProvider.html5Mode(true);
 	        $urlRouterProvider.otherwise('/');
 	        $stateProvider
@@ -15,11 +14,11 @@
 	                    }
 	                }
 	            })
-	            .state('app.register', {
-	                url: 'register',
+	            .state('app.signup', {
+	                url: 'signup',
 	                views: {
 	                    'content@': {
-	                        templateUrl: '../views/register.html',
+	                        templateUrl: '../views/signup.html',
 	                    }
 	                }
 
@@ -48,3 +47,9 @@
 	        $locationProvider.html5Mode(true)
 
 	    });
+
+	app.run(['authService', function (authService,$localStorageService) {
+    alert($localStorageService);
+    authService.fillAuthData();
+
+}]);
