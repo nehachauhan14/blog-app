@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
+angular.module('app').factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService, $rootScope) {
 
     var serviceBase = 'http://localhost:58459/';
     var authServiceFactory = {};
@@ -26,6 +26,7 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
 
         var deferred = $q.defer();
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+
             localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;

@@ -10,8 +10,8 @@
             <div class="container-fluid" ng-repeat="blog in blogs track by $index" >
                     <h2 class= "page-header">{{blog.title}}</h2>
                     <blockquote> {{blog.blog_Content}}</blockquote>
-                    <button type="button" id = {{blog.bid}} class="btn btn-info btn-lg" href="/#edit">Edit</button>
-                    <button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#deleteModal"> Delete </button>
+                    <button type="button" id = {{blog.bid}} class="btn btn-info btn-lg" data-toggle="modal" data-target="#editModal">Edit</button>
+                    <button type="button" id = {{blog.bid}} class="btn btn-lg btn-danger" data-toggle="modal" data-target="#deleteModal"> Delete </button>
             </div>
         </div>
     </div>
@@ -32,9 +32,9 @@
           <div class="modal-body">
              <div class="form-group" >
               <label for="title">Title:</label>
-              <input type="text" class="form-control" name="firstName" placeholder="Title" [(ngModel)]="newBlog.title"  required>
+              <input type="text" class="form-control" name="title" placeholder="Title" ng-model="newBlog.title"  required>
               <label for="lastName">Content</label>
-               <textarea class="form-control" rows="10" name="lastName" [(ngModel)]="newBlog.content"  placeholder = "What is in your mind ?" required></textarea>
+               <textarea class="form-control" rows="10" name="blog_Content" ng-model="newBlog.blog_Content"  placeholder = "What is in your mind ?" required></textarea>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary"  data-dismiss="modal" data-ng-click ="addBlog(newBlog)">Save</button>
@@ -45,3 +45,53 @@
       </div>
     </div>
 
+<!-- Delete Bolg Model BOX -->
+
+<div class="container" style="display:inline-block">
+      <div class="modal fade" id="deleteModal" role="dialog">
+          <div class="modal-dialog">              
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="modal-title" style = "text-align: center">DELETE</h1>
+                      </div>
+                      <div class="modal-body">
+                     <strong>Confirm Delete ?</strong> 
+                   </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-click ="editBlog(newBlog)">Ok</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                      </div>
+              
+          </div>
+      </div>      
+  </div>
+
+<!-- Edit Bolg Model BOX -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" role="dialog">
+      <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 class="modal-title" style = "text-align: center">Edit Blog</h1>
+          </div>
+          <div class="modal-body">
+             <div class="form-group" >
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" name="title" placeholder="Title" ng-model="newBlog.title"  required>
+              <label for="lastName">Content</label>
+               <textarea class="form-control" rows="10" name="blog_Content" ng-model="newBlog.blog_Content"  placeholder = "What is in your mind ?" required></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary"  data-dismiss="modal" data-ng-click ="editBlog(newBlog)">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>        
+        </div>
+      </div>
+    </div>

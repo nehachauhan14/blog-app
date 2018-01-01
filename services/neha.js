@@ -1,5 +1,5 @@
 'use strict';
-app.factory('authInterceptorService', ['$q', '$location', 'localStorageService', function ($q, $location, localStorageService) {
+app.factory('neha', ['$q', '$location', 'localStorageService', function ($q, $location, localStorageService) {
  
     var authInterceptorServiceFactory = {};
  

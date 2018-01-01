@@ -1,13 +1,13 @@
 
 'use strict';
-app.controller('myblogsCtrl', ['$scope', 'myblogsService' , 'authInterceptorService', function ($scope, myblogsService , authInterceptorService) {
+app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, myblogsService) {
 
     $scope.blogs = [];
     $scope.newBlog = {
-    	bid : 1 , 
+    	bid : '', 
     	title : "" , 
-    	content : "", 
-    	uid : ""
+    	blog_Content : "", 
+    	uid : 1
     };
 
     myblogsService.getBlogs().then(function (results) {
