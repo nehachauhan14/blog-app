@@ -1,19 +1,31 @@
 <div class="container top-buffer">
-    <form name="form" ng-submit="" role="form">
+    <form name="form"  role="form">
+         <div data-ng-hide="message == ''"  class = "alert alert-danger">
+        {{message}}
+        </div>
         <div class="imgcontainer">
             <h1>Login here!</h1>
         </div>
         
         <div class="container">
             <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" ng-datamodel required>
+            <input type="text" placeholder="Enter Username" name="unserName" data-ng-model="loginData.userName" required>
             <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading">Login</button>
-            <input type="checkbox" checked="checked"> Remember me
+            <input type="password" placeholder="Enter Password" name="password" data-ng-model="loginData.password" required>
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" data-ng-click="login()">Login</button>
         </div>
         <div class="container" style="background-color:#f1f1f1">
-           <a href="../#register" class="btn btn-link">Register</a>
+           <a href="../#signup" class="btn btn-link">Register</a>
         </div>
     </form>
 </div>
+<!-- 
+<form class="form-login" role="form">
+    <h2 class="form-login-heading">Login</h2>
+    <input type="text" class="form-control" placeholder="Username" data-ng-model="loginData.userName" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" data-ng-model="loginData.password" required>
+    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="login()">Login</button>
+     <div data-ng-hide="message == ''" class="alert alert-danger">
+        {{message}}
+    </div>
+</form> -->

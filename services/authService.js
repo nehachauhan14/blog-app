@@ -1,9 +1,8 @@
-
-
+'use strict';
 
 angular.module('app').factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
 
-    var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
+    var serviceBase = 'http://localhost:58459/';
     var authServiceFactory = {};
 
     var _authentication = {
@@ -15,7 +14,7 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
 
         _logOut();
 
-        return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
+        return $http.post(serviceBase + 'api/Blogger/RegisterUser', registration).then(function (response) {
             return response;
         });
 
@@ -26,11 +25,8 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
         var deferred = $q.defer();
-
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-
             localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
-
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
 

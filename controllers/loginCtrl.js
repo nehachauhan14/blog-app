@@ -1,23 +1,17 @@
 'use strict';
-app.controller('loginController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
- 
+app.controller('loginCtrl', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
     $scope.loginData = {
         userName: "",
         password: ""
     };
- 
     $scope.message = "";
- 
+    
     $scope.login = function () {
- 
         authService.login($scope.loginData).then(function (response) {
- 
-            $location.path('/orders');
- 
+            $location.path('/myblogs');
         },
          function (err) {
              $scope.message = err.error_description;
          });
     };
- 
 }]);

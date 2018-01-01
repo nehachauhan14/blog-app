@@ -1,11 +1,11 @@
-app.controller('signupCtrl', ['$scope', '$location', '$timeout', 'authService', function ($scope, $location, $timeout, authService) {
+angular.module('app').controller('signupCtrl', ['$scope', '$location', '$timeout', 'authService', function ($scope, $location, $timeout, authService) {
 
     $scope.savedSuccessfully = false;
     $scope.message = "";
 
     $scope.registration = {
         userName: "",
-        password: "",
+        pwd: "",
         confirmPassword: ""
     };
 
@@ -25,7 +25,7 @@ app.controller('signupCtrl', ['$scope', '$location', '$timeout', 'authService', 
                      errors.push(response.data.modelState[key][i]);
                  }
              }
-             $scope.message = "Failed to register user due to:" + errors.join(' ');
+             $scope.message = "Failed to register user due to:" + errors.join('');
          });
     };
 

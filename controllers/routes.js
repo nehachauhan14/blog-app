@@ -19,6 +19,7 @@
 	                views: {
 	                    'content@': {
 	                        templateUrl: '../views/signup.html',
+	                        controller : 'signupCtrl'
 	                    }
 	                }
 
@@ -28,6 +29,7 @@
 	                views: {
 	                    'content@': {
 	                        templateUrl: '../views/login.html',
+	                        controller : 'loginCtrl'
 	                    }
 	                }
 
@@ -48,8 +50,14 @@
 
 	    });
 
+
+
 	app.run(['authService', function (authService,$localStorageService) {
-    alert($localStorageService);
     authService.fillAuthData();
 
 }]);
+
+	
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
+});
