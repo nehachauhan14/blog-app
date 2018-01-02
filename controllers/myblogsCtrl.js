@@ -46,7 +46,7 @@ $scope.addBlog = function (newBlog) {
         myblogsService.addBlogs($scope.newBlog).then(function (response) {
             $scope.addedSuccessfully = true;
             $scope.message = "Blog has been saved Successfully";
-
+            $scope.setup();
         },
          function (response) {
              var errors = [];
@@ -66,6 +66,7 @@ if(confirm('Are you sure you want to delete this?')){
 myblogsService.deleteBlog(bid).then(function(response){
 		$scope.deletedSuccessfully = true; 
 		$scope.message = "deleted Successfully" ; 
+        $scope.setup();
 },
 function(response){
 	var errors = [];

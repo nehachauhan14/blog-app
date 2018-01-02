@@ -4,9 +4,9 @@ app.factory('myblogsService', ['$http', function ($http) {
     var serviceBase = 'http://localhost:58459/';
     var myblogsServiceFactory = {};
  
-    var _getBlogs = function (uid) {
+    var _getBlogs = function () {
  
-        return $http.get(serviceBase + 'api/Blogs/GetBlogsById/' + 1).then(function (results) {
+        return $http.get(serviceBase + 'api/Blogs/GetBlogsById').then(function (results) {
             return results;
         });
     };
