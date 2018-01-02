@@ -9,7 +9,10 @@ app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, my
     	blog_Content : "", 
     	uid : 1
     };
-
+  
+    $scope.addedSuccessfully = false ; 
+    $scope.deletedSuccessfully = false;
+    $scope.message = "";
     myblogsService.getBlogs().then(function (results) {
     	        $scope.blogs = results.data;
 
@@ -17,10 +20,17 @@ app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, my
        alert(error.data.message);
     });
 
+$scope.getBlogToEdit = function(Id){
+   myblogsService.getBlogByBid(Id).then(function(results){
+        $scope.newBlog = results.data[0];
+   })
+    
+}
+
+
 
 $scope.addBlog = function (newBlog) {
         myblogsService.addBlogs($scope.newBlog).then(function (response) {
-        	debugger
             $scope.addedSuccessfully = true;
             $scope.message = "Blog has been saved Successfully";
 
@@ -38,4 +48,21 @@ $scope.addBlog = function (newBlog) {
 };
 
 
+$scope.deleteBlog = function(bid){
+if(confirm('Are you sure you want to delete this?')){
+myblogsService.deleteBlog(bid).then(function(response){
+		$scope.deletedSuccessfully = true; 
+		$scope.message = "deleted Successfully" ; 
+},
+function(response){
+	var errors = [];
+             for (var key in response.data.modelState) {
+                 for (var i = 0; i < response.data.modelState[key].length; i++) {
+                     errors.push(response.data.modelState[key][i]);
+                 }
+             }
+             $scope.message = "Failed to Delete blog due to :" + errors.join('');
+});
+}
+}
 }]);
