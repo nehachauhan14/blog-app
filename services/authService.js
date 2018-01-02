@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService, $rootScope) {
+angular.module('app').factory('authService', ['$http', '$q', 'localStorageService', '$rootScope', function ($http, $q, localStorageService, $rootScope) {
 
     var serviceBase = 'http://localhost:58459/';
     var authServiceFactory = {};
@@ -30,6 +30,8 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
             localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
+            $rootScope.currentUser = loginData.userName
+            localStorage.setItem('currentUser',$rootScope.currentUser)
 
             deferred.resolve(response);
 
@@ -45,7 +47,8 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
     var _logOut = function () {
 
         localStorageService.remove('authorizationData');
-
+        localStorage.removeItem('currentUser')
+        $rootScope.currentUser = null
         _authentication.isAuth = false;
         _authentication.userName = "";
 

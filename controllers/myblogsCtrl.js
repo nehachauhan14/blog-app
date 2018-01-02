@@ -13,19 +13,32 @@ app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, my
     $scope.addedSuccessfully = false ; 
     $scope.deletedSuccessfully = false;
     $scope.message = "";
-    myblogsService.getBlogs().then(function (results) {
-    	        $scope.blogs = results.data;
+
+$scope.setup = function(){
+     myblogsService.getBlogs().then(function (results) {
+                $scope.blogs = results.data;
 
     }, function (error) {
        alert(error.data.message);
     });
+}
+
+$scope.setup();
 
 $scope.getBlogToEdit = function(Id){
    myblogsService.getBlogByBid(Id).then(function(results){
         $scope.newBlog = results.data[0];
    })
     
-}
+}; 
+
+$scope.editBlog = function(newBlog){
+    myblogsService.editBlog( $scope.newBlog.bid , newBlog).then(function(results){
+        debugger
+        console.log(results);
+        $scope.setup();
+    })
+};
 
 
 

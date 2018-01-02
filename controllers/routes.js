@@ -1,13 +1,12 @@
 	app.config(function($stateProvider, $urlRouterProvider, $locationProvider ) {
-	          $locationProvider.html5Mode(true);
 	        $urlRouterProvider.otherwise('/');
 	        $stateProvider
 	            .state('app', {
 	                url: '/',
 	                views: {
 	                    'header': {
-	                        templateUrl: '../views/nav.html'
-	                    },
+	                        templateUrl: '../views/nav.html',
+	                        controller: 'navCtrl'	                    },
 	                    'content': {
 	                        templateUrl: '../views/feed.html',
 	                        controller: 'feedCtrl'	                        

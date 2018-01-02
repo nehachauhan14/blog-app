@@ -5,10 +5,16 @@
         </div>
         <ul class="nav navbar-nav pull-right">
             <li class="active"><a href="/#">Feed</a></li>
-            <li ><a href="/#myblogs">My Blogs</a></li>
-            <li><a href="/#login">Login</a></li>
-             <li><a href="/#signup">Register</a></li>
-             <li > <a href="" data-ng-click="logOut()">Logout</a></li>
+            <li ng-if="currentUser"><a href="/#myblogs">My Blogs</a></li>
+            <li ng-if="!currentUser"><a href="/#login">Login</a></li>
+            <li ng-if="!currentUser"><a href="/#signup">Register</a></li>
+            <li ng-if="currentUser" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{currentUser}}
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li ng-if="currentUser"> <a href="" data-ng-click="logOut()">Logout</a></li>
+                </ul>
+            </li>            
         </ul>
     </div>
 </nav>

@@ -4,9 +4,9 @@ app.factory('myblogsService', ['$http', function ($http) {
     var serviceBase = 'http://localhost:58459/';
     var myblogsServiceFactory = {};
  
-    var _getBlogs = function () {
+    var _getBlogs = function (uid) {
  
-        return $http.get(serviceBase + 'api/Blogs/GetBlogsById/1').then(function (results) {
+        return $http.get(serviceBase + 'api/Blogs/GetBlogsById/' + 1).then(function (results) {
             return results;
         });
     };
@@ -22,29 +22,17 @@ app.factory('myblogsService', ['$http', function ($http) {
  	
     var _addBlogs = function (newBlog) {
 
-        $http.post(serviceBase + '/api/Blogs/CreateBlog', newBlog, { headers: { 'Content-Type': 'application/JSON' } }).success(function (response) {
-            return response ; 
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
+        return $http.post(serviceBase + '/api/Blogs/CreateBlog', newBlog, { headers: { 'Content-Type': 'application/JSON' } })
 };
 
 var _deleteBlog = function(bid){
-    $http.delete(serviceBase + 'api/Blogs/DeleteBlogById/' + bid )
-    .success(function (response) {
-            return response ; 
-    }).error(function (err, status) {
-            deferred.reject(err);
-        });
+    return $http.delete(serviceBase + 'api/Blogs/DeleteBlogById/' + bid )
+   
 };
 
-var _editBlog = function( bid , blogToEdit)
+var _editBlog = function( bid , newBlog)
 {
-    $http.put(serviceBase + '/api/Blogs/UpdateBlogById/' + bid, newBlog, { headers: { 'Content-Type': 'application/JSON' } }).success(function (response) {
-            return response ; 
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
+   return  $http.put(serviceBase + '/api/Blogs/UpdateBlogById/' + bid, newBlog, { headers: { 'Content-Type': 'application/JSON' } })
 };
 
  myblogsServiceFactory.deleteBlog = _deleteBlog;

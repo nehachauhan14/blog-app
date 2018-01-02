@@ -6,13 +6,8 @@ angular.module('app')
         	$scope.blogs = response.data
         })
 
-
-    // $scope.logOut = function () {
-    //     authService.logOut();
-    //     $location.path('/login');
-    // }
  
-    // $scope.authentication = authService.authentication;
+    $scope.authentication = authService.authentication;
 
     })
 
