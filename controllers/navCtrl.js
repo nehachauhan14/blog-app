@@ -8,4 +8,9 @@ app.controller('navCtrl', ['$scope', '$location', 'authService', function ($scop
  
     $scope.authentication = authService.authentication;
  
+$scope.isActive = function (viewLocation) {
+     var active = (viewLocation === $location.path());
+     return active;
+};
+
 }]);

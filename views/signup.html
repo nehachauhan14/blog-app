@@ -8,16 +8,16 @@
         </div>
         <div class="container">
             <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" data-ng-model="registration.userName" required>
+            <input type="text" style = "width:95%" placeholder="Enter Username" name="uname" data-ng-model="registration.userName" required>
             <label><b>Email Address</b></label>
-            <input type="text" placeholder="Enter Email Address" name="email" data-ng-model="registration.email" required>
+            <input type="text" style = "width:95%" placeholder="Enter Email Address" name="email" data-ng-model="registration.email" required>
             <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="pwd" data-ng-model="registration.pwd" required>
+            <input type="password" style = "width:95%" placeholder="Enter Password" name="pwd" data-ng-model="registration.pwd" required>
             <label><b>Confirm Password</b></label>
-            <input type="password" placeholder="Re-enter Password" name="pwd" data-ng-model="registration.confirmPassword" required>
+            <input type="password" style = "width:95%" placeholder="Re-enter Password" name="pwd" data-ng-model="registration.confirmPassword"  compare-to="registration.pwd" required>
         </div>
         <div class="container" style="background-color:#f1f1f1">
-            <button type="submit" data-ng-click="signUp()">Register</button>
+            <button type="submit" style = "width:95%" data-ng-click="signUp()" >Register</button>
         </div>
         </form>
 </div>

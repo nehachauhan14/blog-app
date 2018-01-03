@@ -4,10 +4,10 @@
             <a class="navbar-brand" href="#">CyberGroup Blog</a>
         </div>
         <ul class="nav navbar-nav pull-right">
-            <li class="active"><a href="/#">Feed</a></li>
-            <li ng-if="currentUser"><a href="/#myblogs">My Blogs</a></li>
-            <li ng-if="!currentUser"><a href="/#login">Login</a></li>
-            <li ng-if="!currentUser"><a href="/#signup">Register</a></li>
+            <li class="active" ng-class="{ active: isActive('/') }"><a href="/#">Feed</a></li>
+            <li ng-if="currentUser" ng-class="{ active: isActive('/myblogs') }"><a href="/#myblogs">My Blogs</a></li>
+            <li ng-if="!currentUser" ng-class="{ active: isActive('/login') }"><a href="/#login">Login</a></li>
+            <li ng-if="!currentUser" ng-class="{ active: isActive('/signup') }"><a href="/#signup">Register</a></li>
             <li ng-if="currentUser" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{currentUser}}
                 <span class="caret"></span></a>

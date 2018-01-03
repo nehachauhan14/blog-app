@@ -21,7 +21,7 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
     };
 
     var _login = function (loginData) {
-
+        debugger
         var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
         var deferred = $q.defer();

@@ -6,12 +6,17 @@ angular.module('app').controller('signupCtrl', ['$scope', '$location', '$timeout
     $scope.registration = {
         userName: "",
         pwd: "",
-        confirmPassword: ""
+        confirmPassword: "" , 
+        email : ""
     };
+
 
     $scope.signUp = function () {
 
-        authService.saveRegistration($scope.registration).then(function (response) {
+
+if($scope.registration.pwd.length >0 && $scope.registration.confirmPassword.length >0 && $scope.registration.userName.length >0 && $scope.registration.email.length >0 && ($scope.registration.confirmPassword == $scope.registration.pwd)){
+
+      authService.saveRegistration($scope.registration).then(function (response) {
 
             $scope.savedSuccessfully = true;
             $scope.message = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
@@ -19,14 +24,24 @@ angular.module('app').controller('signupCtrl', ['$scope', '$location', '$timeout
 
         },
          function (response) {
-             var errors = [];
+            if (response.data)
+            {
+                 $scope.message = "Failed to register user due to:" + response.data;
+            }
+            else
+            {
+            var errors = [];
              for (var key in response.data.modelState) {
                  for (var i = 0; i < response.data.modelState[key].length; i++) {
                      errors.push(response.data.modelState[key][i]);
                  }
              }
-             $scope.message = "Failed to register user due to:" + errors.join('');
+             $scope.message = "Failed to add new blog due to :" + errors.join('');
+            }
+            
          });
+}
+      
     };
 
     var startTimer = function () {

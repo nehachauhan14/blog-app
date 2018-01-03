@@ -5,9 +5,9 @@ app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, my
     $scope.blogs = [];
     $scope.newBlog = {
     	bid : '', 
-    	title : "" , 
-    	blog_Content : "", 
-    	uid : 1
+    	title : '' , 
+    	blog_Content : '', 
+    	uid : ''
     };
   
     $scope.addedSuccessfully = false ; 
@@ -39,6 +39,22 @@ $scope.editBlog = function(newBlog){
         $scope.setup();
     })
 };
+
+$scope.clearFeilds = function()
+{
+   $scope.newBlog =[];
+}
+
+$scope.readMore = function(blog){
+    $scope.blogs.forEach(function(blog){
+        if(blog.isReadMore){
+            if(blog.isReadMore == true){
+                blog.isReadMore = false;
+            }
+        }
+    });
+    blog.isReadMore = true;
+}
 
 
 
