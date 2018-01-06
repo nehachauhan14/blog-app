@@ -7,7 +7,7 @@ app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, my
     	bid : '', 
     	title : '' , 
     	blog_Content : '', 
-    	uid : ''
+    	uid : 1
     };
   
     $scope.addedSuccessfully = false ; 
@@ -34,7 +34,6 @@ $scope.getBlogToEdit = function(Id){
 
 $scope.editBlog = function(newBlog){
     myblogsService.editBlog( $scope.newBlog.bid , newBlog).then(function(results){
-        debugger
         console.log(results);
         $scope.setup();
     })
@@ -59,6 +58,7 @@ $scope.readMore = function(blog){
 
 
 $scope.addBlog = function (newBlog) {
+        debugger    
         myblogsService.addBlogs($scope.newBlog).then(function (response) {
             $scope.addedSuccessfully = true;
             $scope.message = "Blog has been saved Successfully";

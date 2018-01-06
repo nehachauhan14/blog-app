@@ -9,6 +9,17 @@ angular.module('app')
  
     $scope.authentication = authService.authentication;
 
+    $scope.readMore = function(blog){
+    $scope.blogs.forEach(function(blog){
+        if(blog.isReadMore){
+            if(blog.isReadMore == true){
+                blog.isReadMore = false;
+            }
+        }
+    });
+    blog.isReadMore = true;
+	}
+
     })
 
 

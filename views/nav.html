@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="#">CyberGroup Blog</a>
         </div>
         <ul class="nav navbar-nav pull-right">
-            <li class="active" ng-class="{ active: isActive('/') }"><a href="/#">Feed</a></li>
+            <li ng-class="{ active: isActive('/') }"><a href="/#">Feed</a></li>
             <li ng-if="currentUser" ng-class="{ active: isActive('/myblogs') }"><a href="/#myblogs">My Blogs</a></li>
             <li ng-if="!currentUser" ng-class="{ active: isActive('/login') }"><a href="/#login">Login</a></li>
             <li ng-if="!currentUser" ng-class="{ active: isActive('/signup') }"><a href="/#signup">Register</a></li>
