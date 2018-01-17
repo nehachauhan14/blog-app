@@ -4,6 +4,7 @@
             <a class="navbar-brand" href="#">CyberGroup Blog</a>
         </div>
         <ul class="nav navbar-nav pull-right">
+            <li><input type="text"/> </li>
             <li ng-class="{ active: isActive('/') }"><a href="/#">Feed</a></li>
             <li ng-if="currentUser" ng-class="{ active: isActive('/myblogs') }"><a href="/#myblogs">My Blogs</a></li>
             <li ng-if="!currentUser" ng-class="{ active: isActive('/login') }"><a href="/#login">Login</a></li>

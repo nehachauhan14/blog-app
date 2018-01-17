@@ -9,7 +9,7 @@ form {
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input[type=text], input[type=password] , input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -26,8 +26,9 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 80%;
 }
+
 
 /* Add a hover effect for buttons */
 button:hover {
@@ -78,4 +79,9 @@ span.psw {
     .cancelbtn {
         width: 100%;
     }
+}
+
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+    border: 2px solid red ; 
 }
