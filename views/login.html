@@ -1,42 +1,71 @@
 <div class="container top-buffer">
-    <form name="form"  role="form">
+
          <div data-ng-hide="message == ''"  class = "alert alert-danger">
         {{message}}
         </div>
-        <div class="imgcontainer">
+        <div class="container" style = "text-align: center;">
             <h1>Login here!</h1>
         </div>
-        <div>
-        <div class="containerm col-md-8" >
-           
-            <form name = "loginForm">
-                <label><b>Username</b></label>
+
+        <form name = "loginForm">
+
+        <div class="container col-md-8" >
+            
+                <label style = "padding-top: 8px"><b>Username</b></label>
                 <input type="text" style = "width:95%" placeholder="Enter Username" name="unserName" data-ng-model="loginData.userName" required>
-                <label><b>Password</b></label>
+                <label style = "padding-top: 8px"><b>Password</b></label>
                 <input type="password" style = "width:95%" placeholder="Enter Password" name="password" data-ng-model="loginData.password" required>
                 <button type="submit" style = "width:95%" ng-disabled="form.$invalid || vm.dataLoading" data-ng-click="login()">Login</button>
-            </form>
+                    
         </div>
+    </form>
         <div class="col-md-4">
             <h2 class="form-login-heading">Social Logins</h2>
             <p>Or you can login using one of the social logins bleow</p>
-            <button class="btn btn-large btn-facebook btn-block" type="button" data-ng-click="authExternalProvider('Facebook')"><i class="fa fa-facebook"></i> | Connect with Facebook</button>
-            <button class="btn btn-large btn-google-plus btn-block" type="button" data-ng-click="authExternalProvider('Google')"><i class="fa fa-google-plus"></i> | Connect with Google+</button>
+            
+            
+            
+            <button class="btn btn-large btn-facebook btn-block" ng-click="registerWithFacebook()" >
+                <span class="fa fa-facebook"></span> Sign in with facebook
+            </button>
+            <div id="status">
+            </div>
+
+
+<!--             <button class="btn btn-large btn-google-plus btn-block" type="button" data-ng-click="authExternalProvider('Google')"><i class="fa fa-google-plus"></i> | Connect with Google+</button> -->
         </div>
-   
-        </div>
-        <div class="container">
+
+   </div>
+
+<div class="container" style="background-color:#f1f1f1">
            <a href="../#signup" class="btn btn-link">Register</a>
-        </div>
-    </form>
 </div>
-<!-- 
-<form class="form-login" role="form">
-    <h2 class="form-login-heading">Login</h2>
-    <input type="text" class="form-control" placeholder="Username" data-ng-model="loginData.userName" required autofocus>
-    <input type="password" class="form-control" placeholder="Password" data-ng-model="loginData.password" required>
-    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="login()">Login</button>
-     <div data-ng-hide="message == ''" class="alert alert-danger">
-        {{message}}
-    </div>
+
+
+
+
+<!-- <h2>Login Form</h2>
+
+<form action="/action_page.php">
+  <div class="imgcontainer">
+    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
 </form> -->

@@ -21,8 +21,8 @@ app.factory('myblogsService', ['$http', function ($http) {
  
  	
     var _addBlogs = function (newBlog) {
-
-        return $http.post(serviceBase + '/api/Blogs/CreateBlog', newBlog, { headers: { 'Content-Type': 'application/JSON' } })
+        console.log(newBlog)
+        return $http.post(serviceBase + '/api/Blogs/CreateBlog', {title: newBlog.title, Blog_Content: newBlog.blog_Content}, { headers: { 'Content-Type': 'application/JSON' } })
 };
 
 var _deleteBlog = function(bid){

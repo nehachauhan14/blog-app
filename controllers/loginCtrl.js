@@ -1,101 +1,90 @@
 'use strict';
-app.controller('loginCtrl', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
+app.controller('loginCtrl', ['$scope', '$location', 'authService' , 'localStorageService', '$rootScope' ,  function ($scope, $location, authService , localStorageService , $rootScope) {
     $scope.loginData = {
         userName: "",
         password: ""
     };
     $scope.message = "";
+
+    var _authentication = {
+        isAuth: false,
+        userName : ""
+    };
     
     $scope.login = function () {
+     if($scope.loginData.userName.length >0 && $scope.loginData.password.length >0){
         authService.login($scope.loginData).then(function (response) {
             $location.path('/myblogs');
         },
          function (err) {
              $scope.message = err.error_description;
          });
-    };
 
-
- $scope.authExternalProvider = function (provider) {
-
-        var redirectUri = location.protocol + '//' + location.host + '/authcomplete.html';
-        var externalProviderUrl = "api/Account/ExternalLogin?provider=" + provider
-                                                                    + "&response_type=token&client_id=" + 'BlogApp'
-                                                                    + "&redirect_uri=" + "http%3A%2F%2Flocalhost%3A5001%2Fsignin-facebook";
-        window.$windowScope = $scope;//&state=JKo2RSqusrQYSXVvIMNm_n1It4jesvKrXN2zO62cH2g1
-
-        var oauthWindow = window.open(externalProviderUrl, "Authenticate Account", "location=0,status=0,width=600,height=750");
-    };
-
-$scope.authCompletedCB = function (fragment) {
-
-        $scope.$apply(function () {
-
-            if (fragment.haslocalaccount == 'False') {
-
-                authService.logOut();
-
-                authService.externalAuthData = {
-                    provider: fragment.provider,
-                    userName: fragment.external_user_name,
-                    externalAccessToken: fragment.external_access_token
-                };
-
-                $location.path('/associate');
-
-            }
-            else {
-                //Obtain access token and redirect to orders
-                var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
-                authService.obtainAccessToken(externalData).then(function (response) {
-
-                    $location.path('/orders');
-
-                },
-             function (err) {
-                 $scope.message = err.error_description;
-             });
-            }
-
-        });
     }
-
-    // $scope.authenticateExternalProvider = function (provider) {
-
-    //     var externalProviderUrl = "/api/Account/ExternalLogin?provider=" + provider + "&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A5001%2Flogin&state=JKo2RSqusrQYSXVvIMNm_n1It4jesvKrXN2zO62cH2g1";
-    //     window.location.href = externalProviderUrl;
-
-    // };
-
-    //     $scope.CheckLocationHash = function () {
-    //     if (location.hash) {
-
-    //         if (location.hash.split('access_token=')) {
-    //             $scope.accessToken = location.hash.split('access_token=')[1].split('&')[0];
-    //             if ($scope.accessToken) { 
-    //                 loginAppFactory.CheckRegistration($scope.accessToken).then(function (response) {
-    //                     if (response.data.HasRegistered) {
-    //                         localStorageService.set('authorizationData', { token: $scope.accessToken, userName: response.userName });
-    //                         location.href = "/html/successpage.html";
-    //                     }
-    //                     else {
-    //                         loginAppFactory.SignupExternal($scope.accessToken).then(function (response) {
-    //                             localStorageService.set('authorizationData', { token: $scope.accessToken, userName: response.userName });
-    //                             location.href = "/html/successpage.html";
-    //                         }, function (err) {
-    //                             alert(err.data.Message);
-    //                         })
-    //                     }
-    //                 }, function () {
-    //                     alert("failed.");
-    //                 })
-    //             }
-    //         }
-    //     }
-    //     }
-
-    //     $scope.CheckLocationHash();
+        }
 
 
+    // FB.logout(function(response) {
+    //     console.log(response)
+    // });
+
+    $scope.registerWithFacebook = function() {
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log("Here",response)
+                    // Logged into your app and Facebook.
+                    //$scope.graphAPI();
+                } else {
+                    // The person is not logged into your app or we are unable to tell.
+                    document.getElementById('status').innerHTML = 'Please log ' +
+                        'into this app.';
+                    $scope.openLoginDialog(response);
+                }
+
+                console.log(response)
+            });
+        }
+
+        $scope.openLoginDialog = function(response) {
+            console.log(response)
+            FB.login(function(res) {
+                console.log(res)
+                if (res.status === 'connected') {
+                    console.log("Here")
+                    // Logged into your app and Facebook.
+                    $scope.graphAPI(res.access_token);
+                }
+            }, { scope: 'public_profile,email' })
+        }
+
+        //FB.api('/me?fields=id,name,gender,email'
+
+        
+
+        $scope.graphAPI = function(token) {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me?fields=id,name,gender,email', function(response) {
+                console.log(response)
+                console.log('Successful login for: ' + response.name + " " + response.email);
+                //API TO SEND DATA 
+                //$scope.getUserData(response.id)
+                
+            localStorageService.set('authorizationData', { token: token, userName: response.name });
+            _authentication.isAuth = true;
+            _authentication.userName = response.name;
+            $rootScope.currentUser = response.name;
+            localStorage.setItem('currentUser',$rootScope.currentUser)
+
+                document.getElementById('status').innerHTML =
+                    'Thanks for logging in, ' + response.name + '!';
+            });
+        }
+
+
+        $scope.getUserData = function(userId) {
+            FB.api('/'+userId+'/picture', function(response) {
+                console.log(response)                
+            });
+        }
 
 }]);

@@ -1,7 +1,11 @@
 .top-buffer {
-	margin-top: 70px;
+	margin-top: 30px;
 }
 
+.size{
+    width: 70%;
+    height: 60%;
+}
 
 /* Bordered form */
 form {
@@ -10,7 +14,7 @@ form {
 
 /* Full-width inputs */
 input[type=text], input[type=password] , input[type=email] {
-    width: 100%;
+    width: 95%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -29,6 +33,9 @@ button {
     width: 80%;
 }
 
+.registerbtn{
+    background-color:#f1f1f1 , width:90%
+}
 
 /* Add a hover effect for buttons */
 button:hover {
@@ -81,6 +88,9 @@ span.psw {
     }
 }
 
+.modal-title {
+  line-height: @modal-title-line-height;
+}
 
 input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
     border: 2px solid red ; 

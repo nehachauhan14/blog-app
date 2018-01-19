@@ -58,7 +58,7 @@ $scope.readMore = function(blog){
 
 
 $scope.addBlog = function (newBlog) {
-        debugger    
+           
         myblogsService.addBlogs($scope.newBlog).then(function (response) {
             $scope.addedSuccessfully = true;
             $scope.message = "Blog has been saved Successfully";

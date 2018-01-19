@@ -1,5 +1,5 @@
 	app.config(function($stateProvider, $urlRouterProvider, $locationProvider ) {
-	        $urlRouterProvider.otherwise('/');
+	        //$urlRouterProvider.otherwise('/');
 	        $stateProvider
 	            .state('app', {
 	                url: '/',
@@ -43,7 +43,16 @@
 	                }
 
 	            })
+	            .state('app.associate', {
+	                url: 'signin-facebook',
+	                views: {
+	                    'content@': {
+	                        templateUrl: '../views/associate.html',
+	                        controller : 'associateCtrl'
+	                    }
+	                }
 
+	            })
 	        $locationProvider.html5Mode(true)
 
 	    });
