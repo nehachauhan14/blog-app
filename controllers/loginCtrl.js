@@ -8,9 +8,12 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService' , 'localStorag
 
     var _authentication = {
         isAuth: false,
-        userName : ""
+        userName : "" , 
+        id : "" , 
+        email : ""
     };
     
+
     $scope.login = function () {
      if($scope.loginData.userName.length >0 && $scope.loginData.password.length >0){
         authService.login($scope.loginData).then(function (response) {
@@ -33,7 +36,7 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService' , 'localStorag
                 if (response.status === 'connected') {
                     console.log("Here",response)
                     // Logged into your app and Facebook.
-                    //$scope.graphAPI();
+                    $scope.graphAPI();
                 } else {
                     // The person is not logged into your app or we are unable to tell.
                     document.getElementById('status').innerHTML = 'Please log ' +
@@ -63,18 +66,19 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService' , 'localStorag
 
         $scope.graphAPI = function(token) {
             console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me?fields=id,name,gender,email', function(response) {
-                console.log(response)
-                console.log('Successful login for: ' + response.name + " " + response.email);
-                //API TO SEND DATA 
-                //$scope.getUserData(response.id)
-                
-            localStorageService.set('authorizationData', { token: token, userName: response.name });
-            _authentication.isAuth = true;
-            _authentication.userName = response.name;
-            $rootScope.currentUser = response.name;
-            localStorage.setItem('currentUser',$rootScope.currentUser)
 
+            FB.api('/me?fields=id,name,gender,email', function(response) {
+                debugger
+                _authentication.userName = response.name;
+                _authentication.id = response.id;
+                _authentication.email = response.email; 
+                 authService.loginUsingFacebook(_authentication).then(function (response) {
+            $location.path('/myblogs');
+        },
+         function (err) {
+             $scope.message = err.error_description;
+         });
+            
                 document.getElementById('status').innerHTML =
                     'Thanks for logging in, ' + response.name + '!';
             });

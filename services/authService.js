@@ -7,7 +7,9 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
 
     var _authentication = {
         isAuth: false,
-        userName : ""
+        userName : "" ,  
+        id : "" , 
+        email : ""
     };
 
     var _saveRegistration = function (registration) {
@@ -43,6 +45,29 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
 
     };
 
+var _loginUsingFacebook = function(newUser)
+{
+        debugger
+        var deferred = $q.defer();
+        $http.post('http://localhost:58459/api/Account/Register', newUser, { headers: { 'Content-Type': 'application/JSON' } }).success(function (response) {
+
+             localStorageService.set('authorizationData', { token: response.access_token, userName: newUser.userName });
+             _authentication.isAuth = true;
+             _authentication.userName = newUser.userName;
+             $rootScope.currentUser = newUser.userName
+             localStorage.setItem('currentUser',$rootScope.currentUser)
+
+            deferred.resolve(response);
+
+        }).error(function (err, status) {
+            _logOut();
+            deferred.reject(err);
+        });
+
+        return deferred.promise;
+};
+
+
     var _logOut = function () {
 
         localStorageService.remove('authorizationData');
@@ -69,6 +94,7 @@ angular.module('app').factory('authService', ['$http', '$q', 'localStorageServic
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;
     authServiceFactory.authentication = _authentication;
+authServiceFactory.loginUsingFacebook = _loginUsingFacebook;
 
     return authServiceFactory;
 }]);
