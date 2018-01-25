@@ -1,18 +1,16 @@
 <div class="container top-buffer">
     <div class="row">
         <div class="col-xs-12">
-            <div class="page-header"><h1>All Blogs</h1>
+            <div class="page-header">
+                <h1>All Blogs</h1>
             </div>
-                <!-- <div class="container-fluid" ng-repeat="blog in blogs track by $index" >
-                    <h2 class= "page-header">{{blog.title}}</h2>
-                    <div>{{blog.blog_Content}}
-                    </div>
-                </div> -->
-                <div class="container-fluid" ng-repeat="blog in blogs track by $index" >
-                    <h2 class= "page-header">{{blog.title}}</h2>
-                    <blockquote ng-if="!blog.isReadMore" > {{blog.blog_Content.length > 150 ? blog.blog_Content.substring(0,150) : blog.blog_Content}}<span class = "readmore" ng-if="blog.blog_Content.length>150"ng-click="readMore(blog)">... Read More</span></blockquote>
-                    <blockquote ng-if="blog.isReadMore" > {{blog.blog_Content}}</blockquote>
+            <div class="container-fluid" ng-repeat="blog in blogs track by $index">
+                <div class="card">
+                    <h2 style="font-weight: 700">{{blog.title}}</h2>
+                    <blockquote ng-if="!blog.isReadMore"> {{blog.blog_Content.length > 150 ? blog.blog_Content.substring(0,150) : blog.blog_Content}}<span class="readmore" ng-if="blog.blog_Content.length>150" ng-click="readMore(blog)">... Read More</span></blockquote>
+                    <blockquote ng-if="blog.isReadMore"> {{blog.blog_Content}}</blockquote>
                 </div>
+            </div>
         </div>
     </div>
 </div>

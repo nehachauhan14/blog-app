@@ -1,5 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    /*font-family: 'Oswald', sans-serif !important; */
+    font-family: 'Abel', sans-serif !important;
+    overflow-x: hidden;
+    background: #F2F6F9;
+}
+
+.card {
+    box-shadow: 2px 2px 2px 2px rgba(50, 50, 50, 0.1);
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
 .top-buffer {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 .size{

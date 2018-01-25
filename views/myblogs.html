@@ -4,20 +4,30 @@
             <div class="page-header">
               <div class="row">
                 <div class="col-xs-10"><h1>My Blogs</h1></div> 
-                <div style="margin-top: 20px;" class="col-xs-2"><button type="button" class="btn btn-primary pull-right " style="width: 125px" data-toggle="modal" ng-click = "clearFeilds()" data-target="#addModal">
+                <div style="margin-top: 20px; marker-end:  20px;" class="col-xs-2">
+                  <button type="button" class="btn btn-primary btn-lg  " style="width: 125px" data-toggle="modal" ng-click = "clearFeilds()" data-target="#addModal">
                     Add new Blog
-                </button>
+                  </button>
+                </div>
               </div>
+            </div>
 
-            </div>
-            </div>
-            <div class="container-fluid" ng-repeat="blog in blogs track by $index" >
-                    <h2 class= "page-header">{{blog.title}}</h2>
-                    <blockquote ng-if="!blog.isReadMore" class="col-md-8"> {{blog.blog_Content.length > 150 ? blog.blog_Content.substring(0,150) : blog.blog_Content}}<span class = " readmore" ng-if="blog.blog_Content.length>150"ng-click="readMore(blog)">... Read More</span></blockquote>
-                    <blockquote ng-if="blog.isReadMore" class="col-md-8"> {{blog.blog_Content}}</blockquote>
-                    <button type="button" id = {{blog.bid}} class="btn btn-info btn-lg col-md-2 btn-sm" data-toggle="modal" data-target="#editModal"  ng-click="getBlogToEdit(blog.bid)">Edit</button>
-                   <button type="button" id = {{blog.bid}} class="btn btn-lg btn-danger col-md-2 btn-sm" data-toggle="modal" data-ng-click ="deleteBlog(blog.bid)"> Delete </button>
+            <div class="container-fluid" ng-repeat="blog in blogs track by $index">
+                <div class="card col-md-12">
+                  <div class = "col-md-8">
+                    <h2 style="font-weight: 700">{{blog.title}}</h2>
+                    <blockquote ng-if="!blog.isReadMore" > {{blog.blog_Content.length > 150 ? blog.blog_Content.substring(0,150) : blog.blog_Content}}<span class = " readmore" ng-if="blog.blog_Content.length>150"ng-click="readMore(blog)">... Read More</span></blockquote>
+                    <blockquote ng-if="blog.isReadMore" > {{blog.blog_Content}}</blockquote>
+                  </div>
+                  
+                    <button type="button" id = {{blog.bid}} class="btn btn-info btn-lg col-md-2 "  data-toggle="modal" data-target="#editModal"  ng-click="getBlogToEdit(blog.bid)">Edit</button>
+                   <button type="button" id = {{blog.bid}} class="btn btn-lg btn-danger col-md-2"   data-toggle="modal" data-ng-click ="deleteBlog(blog.bid)"> Delete </button>
+              
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
                     <!-- Edit Bolg Model BOX -->
                     <!-- Modal -->
                     <div class="modal fade" id="editModal" role="dialog">
@@ -46,10 +56,9 @@
                         </div>
                       </div>
             </div>
-        </div>
+<!--         </div>
     </div>
-</div>
-
+ -->
 <!-- Add new Bolg Model BOX -->
 
     <!-- Modal -->
@@ -77,7 +86,7 @@
         </div>
       </div>
     </div>
-
+<!-- </div> -->
 <!-- Delete Bolg Model BOX -->
 
 <div class="container" style="display:inline-block">

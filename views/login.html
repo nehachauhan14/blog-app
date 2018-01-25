@@ -9,7 +9,7 @@
 
         <form name = "loginForm">
 
-        <div class="container col-md-8" >
+        <div class="container-fluid col-md-8" >
             
                 <label style = "padding-top: 8px"><b>Username</b></label>
                 <input type="text" style = "width:95%" placeholder="Enter Username" name="unserName" data-ng-model="loginData.userName" required>
@@ -19,20 +19,17 @@
                     
         </div>
     </form>
-        <div class="col-md-4">
+        <div class="container-fluid col-md-4">
             <h2 class="form-login-heading">Social Logins</h2>
             <p>Or you can login using one of the social logins bleow</p>
             
             
             
-            <button class="btn btn-large btn-facebook btn-block" ng-click="registerWithFacebook()" >
+            <button style="background: #3C5B97; color:white; padding: 10px;" class="btn btn-large btn-facebook btn-block" ng-click="registerWithFacebook()" >
                 <span class="fa fa-facebook"></span> Sign in with facebook
             </button>
             <div id="status">
             </div>
-
-
-<!--             <button class="btn btn-large btn-google-plus btn-block" type="button" data-ng-click="authExternalProvider('Google')"><i class="fa fa-google-plus"></i> | Connect with Google+</button> -->
         </div>
 
    </div>
@@ -41,31 +38,3 @@
            <a href="../#signup" class="btn btn-link">Register</a>
 </div>
 
-
-
-
-<!-- <h2>Login Form</h2>
-
-<form action="/action_page.php">
-  <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-  </div>
-
-  <div class="container">
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked"> Remember me
-    </label>
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form> -->

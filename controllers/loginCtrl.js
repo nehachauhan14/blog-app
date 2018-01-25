@@ -37,11 +37,15 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService' , 'localStorag
                     console.log("Here",response)
                     // Logged into your app and Facebook.
                     $scope.graphAPI();
-                } else {
+                }  else if (response.status === 'not_authorized') {
                     // The person is not logged into your app or we are unable to tell.
                     document.getElementById('status').innerHTML = 'Please log ' +
                         'into this app.';
                     $scope.openLoginDialog(response);
+                } else{
+                   
+                    console.log("teSTING ERROR :" +response);
+                     $scope.openLoginDialog(response);
                 }
 
                 console.log(response)
@@ -60,23 +64,20 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService' , 'localStorag
             }, { scope: 'public_profile,email' })
         }
 
-        //FB.api('/me?fields=id,name,gender,email'
-
-        
 
         $scope.graphAPI = function(token) {
             console.log('Welcome!  Fetching your information.... ');
 
             FB.api('/me?fields=id,name,gender,email', function(response) {
-                debugger
+                
                 _authentication.userName = response.name;
                 _authentication.id = response.id;
                 _authentication.email = response.email; 
                  authService.loginUsingFacebook(_authentication).then(function (response) {
             $location.path('/myblogs');
         },
-         function (err) {
-             $scope.message = err.error_description;
+         function (error) {
+             $scope.message = error.message;
          });
             
                 document.getElementById('status').innerHTML =
