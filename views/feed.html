@@ -7,7 +7,7 @@
             <div class="container-fluid" ng-repeat="blog in blogs track by $index">
                 <div class="card">
                     <h2 style="font-weight: 700">{{blog.title}}</h2>
-                    <blockquote ng-if="!blog.isReadMore"> {{blog.blog_Content.length > 150 ? blog.blog_Content.substring(0,150) : blog.blog_Content}}<span class="readmore" ng-if="blog.blog_Content.length>150" ng-click="readMore(blog)">... Read More</span></blockquote>
+                    <blockquote ng-if="!blog.isReadMore"> {{blog.blog_Content.length > 250 ? blog.blog_Content.substring(0,250) : blog.blog_Content}}<span class="readmore" ng-if="blog.blog_Content.length>150" ng-click="readMore(blog)">... Read More</span></blockquote>
                     <blockquote ng-if="blog.isReadMore"> {{blog.blog_Content}}</blockquote>
                 </div>
             </div>

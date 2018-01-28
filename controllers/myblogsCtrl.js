@@ -4,9 +4,9 @@ app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, my
 
     $scope.blogs = [];
     $scope.newBlog = {
-    	bid : '', 
-    	title : '' , 
-    	blog_Content : '', 
+    	bid : "", 
+    	title : "" , 
+    	blog_Content : "", 
     	uid : 1
     };
   
@@ -39,10 +39,20 @@ $scope.editBlog = function(newBlog){
     })
 };
 
-$scope.clearFeilds = function()
-{
-   $scope.newBlog =[];
+$scope.clearFeilds = function(form)
+{ 
+   $scope.newBlog.title = "" , 
+   $scope.newBlog.blog_Content = "" , 
+    form.$setPristine();
+     form.$setUntouched();
+
 }
+
+$scope.reset = function(form) {
+    
+ 
+ };
+
 
 $scope.readMore = function(blog){
     $scope.blogs.forEach(function(blog){
@@ -57,8 +67,9 @@ $scope.readMore = function(blog){
 
 
 
-$scope.addBlog = function (newBlog) {
-           
+$scope.addBlog = function () {
+    debugger
+if($scope.newBlog.title.length >0 && $scope.newBlog.blog_Content.length >0){           
         myblogsService.addBlogs($scope.newBlog).then(function (response) {
             $scope.addedSuccessfully = true;
             $scope.message = "Blog has been saved Successfully";
@@ -73,7 +84,7 @@ $scope.addBlog = function (newBlog) {
              }
              $scope.message = "Failed to add new blog due to :" + errors.join('');
          });
-
+}
 };
 
 

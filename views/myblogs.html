@@ -5,7 +5,7 @@
               <div class="row">
                 <div class="col-xs-10"><h1>My Blogs</h1></div> 
                 <div style="margin-top: 20px; marker-end:  20px;" class="col-xs-2">
-                  <button type="button" class="btn btn-primary btn-lg  " style="width: 125px" data-toggle="modal" ng-click = "clearFeilds()" data-target="#addModal">
+                  <button type="button" class="btn btn-primary btn-lg  " style="width: 125px" data-toggle="modal" ng-click = "clearFeilds(addForm)" data-target="#addModal">
                     Add new Blog
                   </button>
                 </div>
@@ -18,11 +18,10 @@
                     <h2 style="font-weight: 700">{{blog.title}}</h2>
                     <blockquote ng-if="!blog.isReadMore" > {{blog.blog_Content.length > 150 ? blog.blog_Content.substring(0,150) : blog.blog_Content}}<span class = " readmore" ng-if="blog.blog_Content.length>150"ng-click="readMore(blog)">... Read More</span></blockquote>
                     <blockquote ng-if="blog.isReadMore" > {{blog.blog_Content}}</blockquote>
-                  </div>
+                    </div>
                   
                     <button type="button" id = {{blog.bid}} class="btn btn-info btn-lg col-md-2 "  data-toggle="modal" data-target="#editModal"  ng-click="getBlogToEdit(blog.bid)">Edit</button>
                    <button type="button" id = {{blog.bid}} class="btn btn-lg btn-danger col-md-2"   data-toggle="modal" data-ng-click ="deleteBlog(blog.bid)"> Delete </button>
-              
                     </div>
                   </div>
                 </div>
@@ -32,16 +31,18 @@
                     <!-- Modal -->
                     <div class="modal fade" id="editModal" role="dialog">
                       <div class="modal-dialog">
-                  
-
-
+                
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                             <div class="row"><div class="col-xs-offset-11 col-xs-1 pull-right"><button type="button" class="close" data-dismiss="modal">&times;</button>
+                             </div>
+                           </div>
                             <h1 class="modal-title" style = "text-align: center">Edit Blog</h1>
                           </div>
+                            <form role="form">
                           <div class="modal-body">
+                          
                              <div class="form-group" >
                               <label for="title">Title:</label>
                               <input type="text" class="form-control" name="title" placeholder="Title" ng-model="newBlog.title"  required>
@@ -49,20 +50,18 @@
                                <textarea class="form-control" rows="10" name="blog_Content" ng-model="newBlog.blog_Content"  placeholder = "What is in your mind ?" required></textarea>
                             </div>
                             <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary"  data-dismiss="modal" data-ng-click ="editBlog(newBlog)">Save</button>
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="submit"  class="btn btn-primary col-md-4"  style="float: right !important"  ng-disabled="form.$invalid || vm.dataLoading"  data-ng-click ="editBlog(newBlog)">Save</button>
+                              <button type="button" class="btn btn-default col-md-4"  style="float: right !important" data-dismiss="modal">Close</button>
                             </div>
+                          </form>
                           </div>        
                         </div>
                       </div>
             </div>
-<!--         </div>
-    </div>
- -->
+
 <!-- Add new Bolg Model BOX -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="addModal" role="dialog">
+  <div class="modal fade" id="addModal" role="dialog">
       <div class="modal-dialog">
   
         <!-- Modal content-->
@@ -71,22 +70,29 @@
             <div class="row"><div class="col-xs-offset-11 col-xs-1 pull-right"><button type="button" class="close" data-dismiss="modal">&times;</button></div></div>
             <h1 class="modal-title" style = "text-align: center">Add New Blog</h1>
           </div>
+          <form role="form"  name = "addForm"  pristine = {{addForm.$pristine}} valid ={{addForm.$valid}}>
           <div class="modal-body">
+            
              <div class="form-group" >
               <label for="title">Title:</label>
+
               <input type="text" class="form-control" name="title" placeholder="Title" ng-model="newBlog.title"  required>
               <label for="lastName">Content</label>
                <textarea class="form-control" rows="10" name="blog_Content" ng-model="newBlog.blog_Content"  placeholder = "What is in your mind ?" required></textarea>
             </div>
+          
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary col-md-4"  style="float: right !important" data-dismiss="modal" data-ng-click ="addBlog(newBlog)">Save</button>
+              <button type="submit"  class="btn btn-primary col-md-4"  style="float: right !important"  data-ng-click ="addBlog(newBlog)" >Save</button>
               <button type="button" class="btn btn-default col-md-4"  style="float: right !important" data-dismiss="modal">Close</button>
             </div>
+          </form>
           </div>        
         </div>
       </div>
     </div>
+
 <!-- </div> -->
+
 <!-- Delete Bolg Model BOX -->
 
 <div class="container" style="display:inline-block">
