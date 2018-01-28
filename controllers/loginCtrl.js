@@ -43,13 +43,17 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService' , 'localStorag
                         'into this app.';
                     $scope.openLoginDialog(response);
                 } else{
-                   
                     console.log("teSTING ERROR :" +response);
                      $scope.openLoginDialog(response);
                 }
 
                 console.log(response)
-            });
+            },
+            function (err) {
+             $scope.openLoginDialog(response);
+         } 
+
+            );
         }
 
         $scope.openLoginDialog = function(response) {
