@@ -112,4 +112,21 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
     border: 2px solid red ; 
 }
 
+div.search-container input[type=text]{
+    width: 70%;
+    margin: 3px 2px 2px;
+    height: 30%;
+    box-sizing: content-box;
+    border: 40% solid #ccc;
+    right: 50%;
+    border-radius: 5%;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.jpg');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
 }

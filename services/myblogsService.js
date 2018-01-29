@@ -3,7 +3,16 @@ app.factory('myblogsService', ['$http', function ($http) {
  
     var serviceBase = 'http://localhost:58459/';
     var myblogsServiceFactory = {};
+    var _filteredBlogs = {};
  
+ var _getFiltererdBlogs = function(){
+        return _filteredBlogs
+    };
+
+    var _setFiltererdBlogs = function(filteredBlogs){
+        _filteredBlogs = filteredBlogs;
+    }; 
+
     var _getBlogs = function () {
  
         return $http.get(serviceBase + 'api/Blogs/GetBlogsById').then(function (results) {
@@ -40,6 +49,8 @@ var _editBlog = function( bid , newBlog)
  myblogsServiceFactory.addBlogs = _addBlogs;
  myblogsServiceFactory.editBlog = _editBlog;
  myblogsServiceFactory.getBlogByBid = _getBlogByBid;
+ myblogsServiceFactory.setFiltererdBlogs = _setFiltererdBlogs;
+ myblogsServiceFactory.getFiltererdBlogs = _getFiltererdBlogs;
 
  return myblogsServiceFactory;
 
