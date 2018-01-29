@@ -113,8 +113,8 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
 }
 
 div.search-container input[type=text]{
-    width: 70%;
-    margin: 3px 2px 2px;
+    width: 60%;
+    margin: 2px 2px 2px;
     height: 30%;
     box-sizing: content-box;
     border: 40% solid #ccc;

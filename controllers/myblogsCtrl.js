@@ -1,6 +1,6 @@
 
 'use strict';
-app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, myblogsService, $rootScope) {
+app.controller('myblogsCtrl', ['$scope', 'myblogsService' , '$rootScope' , function ($scope, myblogsService, $rootScope) {
 
     $scope.blogs = [];
     $scope.newBlog = {
