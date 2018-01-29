@@ -1,6 +1,6 @@
 
 'use strict';
-app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, myblogsService) {
+app.controller('myblogsCtrl', ['$scope', 'myblogsService' , function ($scope, myblogsService, $rootScope) {
 
     $scope.blogs = [];
     $scope.newBlog = {
@@ -105,5 +105,15 @@ function(response){
              $scope.message = "Failed to Delete blog due to :" + errors.join('');
 });
 }
+}
+
+$rootScope.$on('myDataSet',function(){
+    $scope.showfilteredMyBlogs()
+}); 
+
+$scope.showfilteredMyBlogs = function(){
+        var errors = [];
+        $scope.blogs = myblogsService.getFiltererdBlogs();
+        // $scope.message =  ;
 }
 }]);
